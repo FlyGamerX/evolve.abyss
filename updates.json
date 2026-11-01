@@ -1,5 +1,19 @@
 {
-  "latestVersion": "0.3.0",
-  "downloadUrl": "https://github.com/FlyGamerX/evolve.abyss/releases/latest/download/EvolveAbyss-Prototype-3-Setup.exe",
-  "releaseNotes": "Prototype 3: start directly in the station without the opening cutscene, improved smooth geometry and procedural monster textures, flashlight battery and three-tap restart, synthesized menu music, footsteps, elevator and jumpscare audio, and improved frame-rate and render-scale presets."
+  "published": true,
+  "latestVersion": "0.4.0",
+  "downloadUrl": "https://github.com/FlyGamerX/evolve.abyss/releases/download/Prototype-4/EvolveAbyss-Prototype-4-Setup.exe",
+  "releaseNotes": "Dimensional Abyss environment with first-person player visuals and improved pickups.\nPassword-protected co-op rooms for up to four players.\nPlayers see each other's positions; enemies and objectives are not synchronized.",
+  "releases": [
+    {
+      "version": "0.4.0",
+      "title": "Evolve Abyss Prototype 4",
+      "publishedAt": "2026-11-01T11:51:46Z",
+      "downloadUrl": "https://github.com/FlyGamerX/evolve.abyss/releases/download/Prototype-4/EvolveAbyss-Prototype-4-Setup.exe",
+      "notes": [
+        "Dimensional Abyss environment with first-person player visuals and improved pickups.",
+        "Password-protected co-op rooms for up to four players.",
+        "Players see each other's positions; enemies and objectives are not synchronized."
+      ]
+    }
+  ]
 }
