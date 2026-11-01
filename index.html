@@ -1,0 +1,1213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EVOLVE ABYSS | Official Portal</title>
+    <link rel="icon" type="image/svg+xml" href="game/assets/evolve-abyss-mark.svg">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #05020a;
+            color: #ffffff;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            overflow-x: hidden;
+        }
+
+        /* --- NAVIGÁCIA --- */
+        nav {
+            width: 100%;
+            padding: 15px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(10, 4, 20, 0.95);
+            border-bottom: 1px solid rgba(176, 101, 255, 0.3);
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 100;
+            backdrop-filter: blur(10px);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.4rem;
+            font-weight: 800;
+            color: #b065ff;
+            letter-spacing: 3px;
+            text-shadow: 0 0 12px rgba(176, 101, 255, 0.6);
+            cursor: pointer;
+        }
+
+        .portal-logo-mark {
+            width: 38px;
+            height: 38px;
+            filter: drop-shadow(0 0 10px rgba(176, 101, 255, 0.5));
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: #a39bb0;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #b065ff;
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .lang-select {
+            background: #0d0618;
+            color: #b065ff;
+            border: 1px solid rgba(176, 101, 255, 0.5);
+            padding: 6px 12px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            outline: none;
+        }
+
+        .lang-select option {
+            background: #0d0618;
+            color: #fff;
+        }
+
+        .nav-btn {
+            padding: 8px 18px;
+            background: transparent;
+            border: 1px solid #b065ff;
+            color: #ffffff;
+            font-size: 0.9rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-btn:hover {
+            background: #b065ff;
+            color: #05020a;
+            box-shadow: 0 0 15px rgba(176, 101, 255, 0.8);
+        }
+
+        /* --- HERO SEKCIA --- */
+        .hero {
+            text-align: center;
+            margin-top: 130px;
+            margin-bottom: 40px;
+            padding: 0 20px;
+            max-width: 900px;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            color: #b065ff;
+            letter-spacing: 6px;
+            text-shadow: 0 0 30px rgba(176, 101, 255, 0.8);
+            margin-bottom: 15px;
+        }
+
+        .hero p {
+            color: #a39bb0;
+            font-size: 1.2rem;
+            line-height: 1.6;
+        }
+
+        /* --- SEKCIE --- */
+        .section-title {
+            color: #b065ff;
+            font-size: 2rem;
+            letter-spacing: 3px;
+            margin: 50px 0 20px;
+            text-align: center;
+            width: 100%;
+            text-shadow: 0 0 15px rgba(176, 101, 255, 0.4);
+        }
+
+        .container {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            width: 90%;
+            max-width: 1100px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+
+        .card {
+            background: rgba(18, 8, 32, 0.7);
+            border: 1px solid rgba(176, 101, 255, 0.3);
+            border-radius: 8px;
+            padding: 30px;
+            flex: 1;
+            min-width: 320px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(5px);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .card h2 {
+            color: #b065ff;
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+            border-bottom: 1px solid rgba(176, 101, 255, 0.2);
+            padding-bottom: 10px;
+        }
+
+        /* --- DETIALNA PRÍBEHOVÁ KARTA --- */
+        .story-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            justify-content: center;
+            width: 90%;
+            max-width: 900px;
+            margin-bottom: 60px;
+        }
+
+        .story-card {
+            background: rgba(13, 6, 24, 0.9);
+            border: 2px solid #b065ff;
+            border-radius: 8px;
+            padding: 35px;
+            width: 100%;
+            box-shadow: 0 0 30px rgba(176, 101, 255, 0.35);
+            position: relative;
+        }
+
+        .chapter-status {
+            font-size: 0.75rem;
+            font-weight: bold;
+            padding: 4px 12px;
+            border-radius: 3px;
+            display: inline-block;
+            margin-bottom: 15px;
+            background: #00ff88;
+            color: #05020a;
+            letter-spacing: 1px;
+        }
+
+        .chapter-status.pending {
+            background: #30243c;
+            color: #c4bdcf;
+            border: 1px solid rgba(176, 101, 255, 0.4);
+        }
+
+        .chapter-num {
+            font-size: 0.95rem;
+            font-weight: bold;
+            color: #8a2be2;
+            letter-spacing: 2px;
+            margin-bottom: 5px;
+            text-transform: uppercase;
+        }
+
+        .story-card h3 {
+            color: #fff;
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            border-bottom: 1px solid rgba(176, 101, 255, 0.3);
+            padding-bottom: 10px;
+        }
+
+        .story-card p {
+            color: #c4bdcf;
+            font-size: 1.05rem;
+            line-height: 1.8;
+            margin-bottom: 15px;
+            text-align: justify;
+        }
+
+        .release-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 18px;
+            width: 90%;
+            max-width: 1100px;
+            margin: 0 auto 60px;
+        }
+
+        .release-card {
+            padding: 24px;
+            border: 1px solid rgba(176, 101, 255, 0.3);
+            border-radius: 8px;
+            background: rgba(13, 6, 24, 0.88);
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.38);
+        }
+
+        .release-version {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            margin-bottom: 12px;
+            color: #d7b4ff;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+        }
+
+        .release-date {
+            color: #8c829c;
+            font-size: 0.78rem;
+            font-weight: 400;
+            letter-spacing: 0;
+            white-space: nowrap;
+        }
+
+        .release-card h3 {
+            margin-bottom: 12px;
+            color: #fff;
+            font-size: 1.15rem;
+        }
+
+        .release-card ul {
+            padding-left: 19px;
+            color: #c4bdcf;
+            font-size: 0.9rem;
+            line-height: 1.7;
+        }
+
+        .release-card li + li { margin-top: 6px; }
+
+        /* --- FORMULÁRE --- */
+        .form-group {
+            margin-bottom: 15px;
+            text-align: left;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 6px;
+            color: #8c829c;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 10px 12px;
+            background: #0d0618;
+            border: 1px solid rgba(176, 101, 255, 0.4);
+            border-radius: 4px;
+            color: #fff;
+            outline: none;
+            font-size: 0.95rem;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 12px;
+            background: #b065ff;
+            border: none;
+            color: #05020a;
+            font-weight: bold;
+            letter-spacing: 1px;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            margin-top: 10px;
+        }
+
+        .submit-btn:hover {
+            background: #c485ff;
+            box-shadow: 0 0 20px rgba(176, 101, 255, 0.9);
+        }
+
+        /* --- DEV SEC / DASHBOARD --- */
+        .dev-box {
+            margin-top: 20px;
+            padding-top: 15px;
+            border-top: 1px dashed rgba(176, 101, 255, 0.3);
+            text-align: center;
+        }
+
+        .dev-box span {
+            font-size: 0.8rem;
+            color: #8c829c;
+            display: block;
+            margin-bottom: 10px;
+            letter-spacing: 1px;
+        }
+
+        .dev-buttons {
+            display: flex;
+            gap: 10px;
+        }
+
+        .dev-btn {
+            flex: 1;
+            padding: 8px;
+            background: #18092a;
+            border: 1px solid #8a2be2;
+            color: #d1b3ff;
+            font-size: 0.8rem;
+            font-weight: bold;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: all 0.2s ease;
+        }
+
+        .dev-btn:hover {
+            background: #8a2be2;
+            color: #fff;
+        }
+
+        /* ADMIN DASHBOARD */
+        #adminPanel {
+            display: none;
+            width: 90%;
+            max-width: 1100px;
+            background: rgba(25, 10, 45, 0.95);
+            border: 2px solid #b065ff;
+            border-radius: 8px;
+            padding: 25px;
+            margin-bottom: 60px;
+            box-shadow: 0 0 30px rgba(176, 101, 255, 0.4);
+        }
+
+        #adminPanel h2 {
+            color: #ff5555;
+            font-size: 1.6rem;
+            margin-bottom: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .admin-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .admin-card {
+            background: #0d0618;
+            padding: 15px;
+            border: 1px solid rgba(176, 101, 255, 0.3);
+            border-radius: 6px;
+        }
+
+        .admin-card h3 {
+            font-size: 1rem;
+            color: #b065ff;
+            margin-bottom: 10px;
+        }
+
+        .admin-btn {
+            width: 100%;
+            padding: 8px;
+            background: #8a2be2;
+            border: none;
+            color: #fff;
+            font-weight: bold;
+            font-size: 0.85rem;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 8px;
+        }
+
+        .admin-btn.danger {
+            background: #cc2222;
+        }
+
+        .toggle-form {
+            text-align: center;
+            margin-top: 15px;
+            font-size: 0.85rem;
+            color: #8c829c;
+        }
+
+        .toggle-form a {
+            color: #b065ff;
+            text-decoration: none;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        /* FOOTER */
+        footer {
+            width: 100%;
+            padding: 20px;
+            text-align: center;
+            background: #030107;
+            border-top: 1px solid rgba(176, 101, 255, 0.2);
+            color: #685e78;
+            font-size: 0.85rem;
+            margin-top: auto;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAVIGÁCIA -->
+    <nav>
+        <div class="logo" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+            <img class="portal-logo-mark" src="game/assets/evolve-abyss-mark.svg" alt="">
+            <span>EVOLVE // ABYSS</span>
+        </div>
+        <div class="nav-links">
+            <a id="navStory" href="#storySection">STORY</a>
+            <a id="navUpdates" href="#updatesSection">UPDATES</a>
+            <a id="navDownload" href="#downloadSection">DOWNLOAD</a>
+            <a id="navAccount" href="#accountCard" onclick="scrollToAccount()">ACCOUNT</a>
+        </div>
+        <div class="nav-right">
+            <select class="lang-select" id="langSelect" onchange="changeLanguage()">
+                <option value="sk">SK</option>
+                <option value="en" selected>EN</option>
+                <option value="de">DE</option>
+                <option value="es">ES</option>
+            </select>
+            <button class="nav-btn" id="navLoginBtn" onclick="scrollToAccount()">LOGIN</button>
+        </div>
+    </nav>
+
+    <!-- HERO SEKCIA -->
+    <section class="hero">
+        <h1>EVOLVE // ABYSS</h1>
+        <p id="heroDesc">Prežite v hlbinách vesmírnej stanice Chronos-9 pri supermasívnej čiernej diere TON 618. Vytvorte si účet, stiahnite inštalátor a vstúpte do Priepasti.</p>
+    </section>
+
+    <!-- KARTY STIAHNUTIA A LOGINU -->
+    <div class="container" id="downloadSection">
+        
+        <!-- STIAHNUTIE HRY -->
+        <div class="card">
+            <div>
+                <h2 id="downloadTitle">Stiahnuť Hru</h2>
+                <p id="downloadDesc" style="color: #a39bb0; font-size: 0.95rem; line-height: 1.5; margin-bottom: 20px;">
+                    Stiahnite si oficiálny inštalátor. Po dokončení inštalácie sa skratka hry vytvorí priamo na vašej ploche PC.
+                </p>
+            </div>
+            <div style="text-align: center;">
+                <button class="submit-btn" id="downloadBtn" onclick="downloadInstaller()">STIAHNUŤ INŠTALÁTOR (.EXE)</button>
+                <div style="font-size: 0.8rem; color: #8c829c; margin-top: 15px;" id="versionText">Prototype 3 (0.3.0) | Windows x64</div>
+            </div>
+        </div>
+
+        <!-- REGISTRÁCIA / LOGIN -->
+        <div class="card" id="accountCard">
+            
+            <!-- REGISTRÁCIA -->
+            <div id="registerFormBox">
+                <h2 id="registerTitle">Registrácia Účtu</h2>
+                <form onsubmit="handleAuth(event, 'register')">
+                    <div class="form-group">
+                        <label id="lblUserReg">MENO OPERÁTORA</label>
+                        <input type="text" id="regUser" required placeholder="Zadajte meno">
+                    </div>
+                    <div class="form-group">
+                        <label id="lblPassReg">HESLO</label>
+                        <input type="password" id="regPass" required placeholder="••••••••">
+                    </div>
+                    <button type="submit" class="submit-btn" id="btnRegister">VYTVORIŤ ÚČET</button>
+                </form>
+                <div class="toggle-form">
+                    <span id="hasAccountText">Už máte účet?</span> 
+                    <a onclick="showLoginForm()" id="linkLogin">Prihlásiť sa</a>
+                </div>
+            </div>
+
+            <!-- LOGIN -->
+            <div id="loginFormBox" style="display: none;">
+                <h2 id="loginTitle">Prihlásenie</h2>
+                <form onsubmit="handleAuth(event, 'login')">
+                    <div class="form-group">
+                        <label id="lblUserLog">MENO OPERÁTORA</label>
+                        <input type="text" id="logUser" required placeholder="Zadajte meno">
+                    </div>
+                    <div class="form-group">
+                        <label id="lblPassLog">HESLO</label>
+                        <input type="password" id="logPass" required placeholder="••••••••">
+                    </div>
+                    <button type="submit" class="submit-btn" id="btnLogin">PRIHLÁSIŤ SA</button>
+                </form>
+                
+                <!-- RÝCHLY PRÍSTUP PRE DEV -->
+                <div class="dev-box">
+                    <span>DEV CONTROL PRÍSTUP:</span>
+                    <div class="dev-buttons">
+                        <button class="dev-btn" onclick="quickDevLogin('LosFlyGameros')">LosFlyGameros (Admin)</button>
+                        <button class="dev-btn" onclick="quickDevLogin('NickGamer')">NickGamer (Tester)</button>
+                    </div>
+                </div>
+
+                <div class="toggle-form">
+                    <span id="noAccountText">Nemáte účet?</span> 
+                    <a onclick="showRegisterForm()" id="linkRegister">Registrovať sa</a>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="section-title" id="updatesSection">RELEASE NOTES</div>
+    <div class="release-grid" aria-label="Game updates">
+        <article class="release-card">
+            <div class="release-version"><span id="release030Version">PROTOTYPE 3 · 0.3.0</span><time class="release-date" datetime="2026-10-31">2026-10-31</time></div>
+            <h3 id="release030Title">Direct start and survival upgrades</h3>
+            <ul>
+                <li id="release030Item1">Start directly in the station; the opening cutscene is removed.</li>
+                <li id="release030Item2">The flashlight starts at 100%, drains while lit, and switches off below 10%; every activation takes three hand taps.</li>
+                <li id="release030Item3">Smoother creature shapes, procedural biomass texture, menu music, footsteps, elevator and jumpscare sounds.</li>
+            </ul>
+        </article>
+        <article class="release-card">
+            <div class="release-version"><span id="release029Version">PROTOTYPE 2.9 · 0.2.9</span><time class="release-date" datetime="2026-10-31">2026-10-31</time></div>
+            <h3 id="release029Title">Ultra-low load mode</h3>
+            <ul>
+                <li id="release029Item1">Low graphics renders at 12.5% resolution, with 4 FPS in menus and 5 FPS in gameplay.</li>
+                <li id="release029Item2">Reduced corridor detail, particles, stars and dynamic lighting.</li>
+                <li id="release029Item3">The cutscene stays lightweight and the instant skip remains available.</li>
+            </ul>
+        </article>
+        <article class="release-card">
+            <div class="release-version"><span id="release028Version">PROTOTYPE 2.8 · 0.2.8</span><time class="release-date" datetime="2026-10-31">2026-10-31</time></div>
+            <h3 id="release028Title">Cutscene load fix</h3>
+            <ul>
+                <li id="release028Item1">The opening cinematic no longer renders the full 3D station scene.</li>
+                <li id="release028Item2">Scene animation and rendering pause during the intro; the timeline uses a 6 FPS update cap.</li>
+                <li id="release028Item3">The game scene renders when the intro ends or is skipped.</li>
+            </ul>
+        </article>
+        <article class="release-card">
+            <div class="release-version"><span id="release027Version">PROTOTYPE 2.7 · 0.2.7</span><time class="release-date" datetime="2026-10-31">2026-10-31</time></div>
+            <h3 id="release027Title">Instant intro skip</h3>
+            <ul>
+                <li id="release027Item1">The skip button responds on press and switches straight to gameplay.</li>
+                <li id="release027Item2">Gameplay renders immediately without waiting for the FPS timer.</li>
+                <li id="release027Item3">Enter and Space still skip the intro when using a keyboard.</li>
+            </ul>
+        </article>
+        <article class="release-card">
+            <div class="release-version"><span id="release026Version">PROTOTYPE 2.6 · 0.2.6</span><time class="release-date" datetime="2026-10-31">2026-10-31</time></div>
+            <h3 id="release026Title">Opening sequence recovery</h3>
+            <ul>
+                <li id="release026Item1">Skip the opening cinematic with the on-screen button or Enter.</li>
+                <li id="release026Item2">Mouse capture now starts only after the cinematic, so it cannot trap the cursor during the intro.</li>
+                <li id="release026Item3">The opening story text appears immediately instead of waiting for the first animation update.</li>
+            </ul>
+        </article>
+        <article class="release-card">
+            <div class="release-version"><span id="release025Version">PROTOTYPE 2.5 · 0.2.5</span><time class="release-date" datetime="2026-10-31">2026-10-31</time></div>
+            <h3 id="release025Title">Rendering and background-load fix</h3>
+            <ul>
+                <li id="release025Item1">Frame cap now controls the render timer, avoiding unnecessary refresh-rate callbacks.</li>
+                <li id="release025Item2">Rendering stops while the game window is hidden and resumes when it becomes visible.</li>
+                <li id="release025Item3">Retains the reduced graphics settings and accessibility modes from 0.2.4.</li>
+            </ul>
+        </article>
+        <article class="release-card">
+            <div class="release-version"><span id="release024Version">PROTOTYPE 2.4 · 0.2.4</span><time class="release-date" datetime="2026-10-31">2026-10-31</time></div>
+            <h3 id="release024Title">Emergency performance update</h3>
+            <ul>
+                <li id="release024Item1">Smaller station scene, fewer dynamic lights and lower-resolution textures.</li>
+                <li id="release024Item2">Very low render scale and strict 10 FPS menu / 12 FPS low-mode caps.</li>
+                <li id="release024Item3">Smaller 800 × 450 window to reduce GPU load and keep the desktop responsive.</li>
+            </ul>
+        </article>
+        <article class="release-card">
+            <div class="release-version"><span id="release023Version">PROTOTYPE 2.3 · 0.2.3</span><time class="release-date" datetime="2026-10-31">2026-10-31</time></div>
+            <h3 id="release023Title">Performance &amp; accessibility update</h3>
+            <ul>
+                <li id="release023Item1">Lower render scale, capped frame rate and lighter menu scene to reduce PC load.</li>
+                <li id="release023Item2">Epilepsy-safe mode and arachnophobia mode in game settings.</li>
+                <li id="release023Item3">Update checker validates a configured HTTPS manifest; a public feed is still required.</li>
+            </ul>
+        </article>
+        <article class="release-card">
+            <div class="release-version"><span id="release020Version">PROTOTYPE 2 · 0.2.0</span><time class="release-date" datetime="2026-10-31">2026-10-31</time></div>
+            <h3 id="release020Title">Awakening in the Abyss</h3>
+            <ul>
+                <li id="release020Item1">First-person Chapter One aboard Chronos-9 near TON 618.</li>
+                <li id="release020Item2">Cosmic opening scene, hostile entities and survival objectives.</li>
+                <li id="release020Item3">Desktop installer with local game files.</li>
+            </ul>
+        </article>
+        <article class="release-card">
+            <div class="release-version"><span id="release010Version">PROTOTYPE 1 · 0.1.0</span><time class="release-date" datetime="2026-10-30">2026-10-30</time></div>
+            <h3 id="release010Title">First playable prototype</h3>
+            <ul>
+                <li id="release010Item1">Early first-person station exploration.</li>
+                <li id="release010Item2">Flashlight, stealth and initial Cryo-Unit 04 encounter.</li>
+                <li id="release010Item3">Prototype objectives and elevator ending.</li>
+            </ul>
+        </article>
+    </div>
+
+    <!-- SEKCIA: KOMPLETNÁ PRÍBEHOVÁ KAMPAŇ -->
+    <div class="section-title" id="storySection">EVOLVE // ABYSS — KOMPLETNÝ PRÍBEH</div>
+
+    <div class="story-grid">
+        <div class="story-card">
+            <div class="chapter-num">PROLÓG</div>
+            <h3>Tieň TON 618</h3>
+            <p><strong>Rok: 2188 | Miesto: Chronos-9 pri TON 618 | Perspektíva: first-person</strong></p>
+            <p>Ľudstvo dosiahlo hranice známeho vesmíru a pod vedením korporácie Evolve zriadilo výskumnú stanicu Chronos-9 na okraji akrečného disku supermasívnej čiernej diery TON 618. Cieľom misie je využiť gravitačnú anomáliu na získavanie čistej energie a testovanie technológie medzidimenzionálnych skokov.</p>
+            <p>Počas tajného hĺbkového vrtu do horizontu udalostí vedci narušia niečo neznáme: starobylú mimozemskú entitu uväznenú v samotnom tkanive časopriestoru. Experiment zlyhá, laboratóriá sú kontaminované a stanica prejde do stavu totálnej bezpečnosti.</p>
+        </div>
+
+        <div class="story-card">
+            <div class="chapter-status">DOSTUPNÉ TERAZ</div>
+            <div class="chapter-num">KAPITOLA 1</div>
+            <h3>Prebudenie v Tme</h3>
+            <p>Prebúdzate sa zo zrýchleného kryospánku v izolovanom výskumnom sektore Chronos-9. V kryokomore blikajú červené núdzové svetlá a varovný signál sprevádza statický šum a hlásenia o kritickom poškodení stanice. Cez priezor vidíte TON 618, ktorej gravitácia ohýba svetlo aj čas. Chronos-9 stráca obežnú dráhu a zlyháva jej podpora života.</p>
+            <p>Laboratóriá sú opustené, prístroje rozhádzané a na podlahe sú stopy po boji. Hlavný systém stanice je odpojený; v temných chodbách počujete len praskanie káblov a ozveny z ventilačných šácht. Musíte sa dostať cez sektor C-3, obnoviť lokálne napájanie skafandra a zistiť, čo sa stalo.</p>
+        </div>
+
+        <div class="story-card">
+            <div class="chapter-status pending">PRIPRAVUJE SA</div>
+            <div class="chapter-num">KAPITOLA 2</div>
+            <h3>Prvé Mutácie</h3>
+            <p>Na ceste ku komandatúre objavujete stopy po zmiznutej posádke. Záznamy z terminálov hovoria o neznámom biologickom organizme, ktorý sa šíri z hlbokých vrtov a využíva biomasu mŕtvych výskumníkov na tvorbu groteskných foriem.</p>
+            <p>Organizmus vníma pohyb, váš srdcový tep aj svetlo baterky. Aby ste prežili, musíte zhasínať svetlá a orientovať sa v úplnej tme.</p>
+        </div>
+
+        <div class="story-card">
+            <div class="chapter-status pending">PRIPRAVUJE SA</div>
+            <div class="chapter-num">KAPITOLA 3</div>
+            <h3>Void Pulse</h3>
+            <p>V opustenom zbrojnom sektore nachádzate prototyp zariadenia Void Pulse. Časticové rázové vlny na krátky čas odhalia neviditeľné anomálne objekty a paralyzujú biologické hrozby.</p>
+            <p>Entita rastie a mutuje. Začína komunikovať cez elektromagnetické frekvencie lode a postupne ovplyvňuje vašu myseľ.</p>
+        </div>
+
+        <div class="story-card">
+            <div class="chapter-status pending">PRIPRAVUJE SA</div>
+            <div class="chapter-num">KAPITOLA 4</div>
+            <h3>Pád Reaktora</h3>
+            <p>Hlavný fúzny reaktor sa kriticky preťažuje a stáva sa primárnym hniezdom entity. Ak ho manuálne nestabilizujete, Chronos-9 bude vtiahnutá do horizontu udalostí.</p>
+            <p>Zostupujete do najhlbších, zaplavených a kontaminovaných podlaží. Gravitácia divoko kolíše a z tmy na vás útočia zmutované hrozby — zhora, z vody aj zo stien.</p>
+        </div>
+
+        <div class="story-card">
+            <div class="chapter-status pending">PRIPRAVUJE SA</div>
+            <div class="chapter-num">KAPITOLA 5</div>
+            <h3>Sfinga Priepasti</h3>
+            <p>V botanických a izolačných sektoroch sa postavíte prvému obrovskému bossovi — organizmu známemu ako Sfinga Priepasti. Ohýba vaše vnímanie, vyvoláva halucinácie stratených kolegov a mení chodby priamo pred vašimi očami.</p>
+            <p>Prežiť môžete len vďaka akustickým senzorom skafandra, správnej orientácii a presnému načasovaniu útokov.</p>
+        </div>
+
+        <div class="story-card">
+            <div class="chapter-status pending">PRIPRAVUJE SA</div>
+            <div class="chapter-num">KAPITOLA 6</div>
+            <h3>Časový Posun</h3>
+            <p>Blízkosť TON 618 a kolaps antigravitačných stabilizátorov vytvoria lokálne časové slučky. Rovnaké časti stanice navštevujete v troch rovinách: pred únikom, počas kolapsu a v zdevastovanej budúcnosti.</p>
+            <p>Riešite časové hádanky a meníte prekážky v prítomnosti zásahmi do minulosti.</p>
+        </div>
+
+        <div class="story-card">
+            <div class="chapter-status pending">PRIPRAVUJE SA</div>
+            <div class="chapter-num">KAPITOLA 7</div>
+            <h3>Vysielanie Zeme</h3>
+            <p>Na komunikačnej palube zachytíte núdzový signál zo Zeme. Chronos-9 nebola iba vedeckým laboratóriom, ale súčasťou utajeného projektu, ktorý skúmal existenčnú hrozbu z iných dimenzií.</p>
+            <p>Entita nepochádza z nášho vesmíru — prebudila sa v dôsledku manipulácie s gravitáciou čiernej diery.</p>
+        </div>
+
+        <div class="story-card">
+            <div class="chapter-status pending">PRIPRAVUJE SA</div>
+            <div class="chapter-num">KAPITOLA 8</div>
+            <h3>Evolučný Skok</h3>
+            <p>Entita dosahuje svoje finálne štádium evolúcie a pohlcuje riadiacu vežu. Chronos-9 sa pod vašimi nohami rozpadá a zásoby kyslíka sa míňajú.</p>
+            <p>Prechádzate sektormi s nulovou gravitáciou, kde každý chybný krok hrozí pádom do nekonečnej priepasti akrečného disku.</p>
+        </div>
+
+        <div class="story-card">
+            <div class="chapter-status pending">PRIPRAVUJE SA</div>
+            <div class="chapter-num">KAPITOLA 9</div>
+            <h3>Únikový Modul</h3>
+            <p>Pretekáte sa s časom cez rútiace sa chodby k poslednému funkčnému únikovému modulu v sektore D-12.</p>
+            <p>Čierna diera pohlcuje okolie, trosky lietajú všade navôkol a posledné zvyšky mutujúcej entity sa vás snažia stiahnuť do hlbín spolu so sebou.</p>
+        </div>
+
+        <div class="story-card">
+            <div class="chapter-status pending">PRIPRAVUJE SA</div>
+            <div class="chapter-num">KAPITOLA 10</div>
+            <h3>Návrat na Zem</h3>
+            <p>Odpálite únikový modul práve vo chvíli, keď TON 618 definitívne pohltí Chronos-9. Na ceste k Zemi vstupujete do kryospánku a veríte, že hrozba zostala v Priepasti.</p>
+            <p>Tesne pred zatvorením očí však senzory modulu zaznamenajú neznámy cudzí biometrický signál priamo na palube...</p>
+        </div>
+    </div>
+
+    <!-- ADMIN & TESTER CONTROL PANEL -->
+    <div id="adminPanel">
+        <h2>
+            <span id="adminRoleTitle">⚙️ DEVELOPER CONTROL PANEL</span>
+            <button class="admin-btn danger" style="width: auto; padding: 5px 15px;" onclick="logoutDev()">ODHLÁSIŤ DEV</button>
+        </h2>
+        <p style="color: #a39bb0; font-size: 0.9rem;" id="adminWelcomeMsg">Vítajte v ovládacom paneli stanice Chronos-9.</p>
+
+        <div class="admin-grid">
+            <div class="admin-card">
+                <h3>📦 Správa Verzie</h3>
+                <p style="font-size: 0.8rem; color: #8c829c;">Aktuálna verzia: <b id="currentVerDisplay" style="color:#fff;">1.0.0</b></p>
+                <button class="admin-btn" onclick="updateGameVersion()">Zmeniť Verziu</button>
+                <button class="admin-btn danger" id="toggleDownloadsBtn" onclick="toggleDownloads()">Vypnúť Stahovanie</button>
+            </div>
+
+            <div class="admin-card">
+                <h3>🌐 Stav Servera</h3>
+                <p style="font-size: 0.8rem; color: #8c829c;">Stav: <b id="serverStatusDisplay" style="color:#00ff88;">ONLINE</b></p>
+                <button class="admin-btn" onclick="toggleServerStatus()">Prepnúť Údržbu</button>
+            </div>
+
+            <div class="admin-card" id="adminOnlyCard">
+                <h3>👑 Admin Práva</h3>
+                <p style="font-size: 0.8rem; color: #8c829c;">Exkluzívne pre Lead Developer</p>
+                <button class="admin-btn" onclick="clearUserAccounts()">Vynulovať Používateľov</button>
+                <button class="admin-btn danger" onclick="triggerSystemAlert()">Vyslať Globálnu Správu</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+        &copy; 2026 EVOLVE ABYSS Studio. Všetky práva vyhradené. Vývojársky tím: LosFlyGameros & NickGamer.
+    </footer>
+
+    <!-- SKRIPTY -->
+    <script>
+        let downloadsActive = true;
+        let serverOnline = true;
+
+        const translations = {
+            sk: {
+                heroDesc: "Prežite v hlbinách vesmírnej stanice Chronos-9 pri supermasívnej čiernej diere TON 618. Vytvorte si účet, stiahnite inštalátor a vstúpte do Priepasti.",
+                downloadTitle: "Stiahnuť Hru",
+                downloadDesc: "Stiahnite si oficiálny inštalátor. Po dokončení inštalácie sa skratka hry vytvorí priamo na vašej ploche PC.",
+                downloadBtn: "STIAHNUŤ INŠTALÁTOR (.EXE)",
+                versionText: "Prototyp 3 (0.3.0) | Windows x64",
+                registerTitle: "Registrácia Účtu",
+                loginTitle: "Prihlásenie",
+                lblUserReg: "MENO OPERÁTORA",
+                lblPassReg: "HESLO",
+                lblUserLog: "MENO OPERÁTORA",
+                lblPassLog: "HESLO",
+                btnRegister: "VYTVORIŤ ÚČET",
+                btnLogin: "PRIHLÁSIŤ SA",
+                hasAccountText: "Už máte účet?",
+                linkLogin: "Prihlásiť sa",
+                noAccountText: "Nemáte účet?",
+                linkRegister: "Registrovať sa",
+                navLoginBtn: "PRIHLÁSENIE / ÚČET",
+                navStory: "PRÍBEH",
+                navUpdates: "NOVINKY",
+                navDownload: "STIAHNUŤ",
+                navAccount: "ÚČET",
+                updatesSection: "ZOZNAM AKTUALIZÁCIÍ",
+                release030Title: "Priamy štart a vylepšenia prežitia",
+                release030Item1: "Začni priamo na stanici; úvodná cutscéna je odstránená.",
+                release030Item2: "Baterka začína na 100 %, pri svietení sa vybíja a pod 10 % sa vypne; každé zapnutie vyžaduje tri klepnutia rukou.",
+                release030Item3: "Hladšie tvary príšer, procedurálna textúra biomasy, hudba menu a zvuky krokov, výťahu aj jumpscare.",
+                release029Title: "Režim s minimálnou záťažou",
+                release029Item1: "Nízka grafika vykresľuje v 12,5 % rozlíšení, menu má limit 4 FPS a hra 5 FPS.",
+                release029Item2: "Menej detailov chodby, častíc, hviezd a dynamického osvetlenia.",
+                release029Item3: "Cutscéna zostáva odľahčená a okamžité preskočenie ostáva dostupné.",
+                release028Title: "Oprava záťaže počas cutscény",
+                release028Item1: "Úvodná cutscéna už nevykresľuje náročnú 3D scénu stanice.",
+                release028Item2: "Počas úvodu sa pozastaví vykresľovanie a animácia scény; časová os sa aktualizuje najviac 6-krát za sekundu.",
+                release028Item3: "Herná scéna sa vykreslí až po skončení alebo preskočení úvodu.",
+                release027Title: "Okamžité preskočenie úvodu",
+                release027Item1: "Tlačidlo reaguje hneď po stlačení a okamžite spustí hrateľnú scénu.",
+                release027Item2: "Hra sa vykreslí ihneď bez čakania na časovač FPS.",
+                release027Item3: "Úvod možno naďalej preskočiť aj klávesmi Enter a medzerník.",
+                release026Title: "Obnovenie úvodnej sekvencie",
+                release026Item1: "Úvodnú cutscénu možno preskočiť tlačidlom na obrazovke alebo klávesom Enter.",
+                release026Item2: "Myš sa zachytí až po cutscéne, takže počas úvodu nezostane zamknutá.",
+                release026Item3: "Text úvodu sa zobrazí hneď a nečaká na prvú aktualizáciu animácie.",
+                release025Title: "Oprava vykresľovania a záťaže na pozadí",
+                release025Item1: "Limit FPS teraz riadi aj časovač vykresľovania a odstraňuje zbytočné volania podľa obnovovacej frekvencie displeja.",
+                release025Item2: "Vykresľovanie sa pri skrytom okne zastaví a po návrate sa obnoví.",
+                release025Item3: "Zachováva znížené grafické nastavenia a režimy prístupnosti z verzie 0.2.4.",
+                release024Title: "Núdzová aktualizácia výkonu",
+                release024Item1: "Menšia scéna stanice, menej dynamických svetiel a textúry s nižším rozlíšením.",
+                release024Item2: "Veľmi nízke rozlíšenie vykresľovania a prísny limit 10 FPS v menu / 12 FPS v hre pri nízkej grafike.",
+                release024Item3: "Menšie okno 800 × 450 na zníženie záťaže grafiky a zachovanie odozvy počítača.",
+                release023Title: "Aktualizácia výkonu a prístupnosti",
+                release023Item1: "Nižšie rozlíšenie vykresľovania, limit snímok a odľahčené menu znižujú záťaž PC.",
+                release023Item2: "Režim bez zábleskov a režim proti arachnofóbii v nastaveniach hry.",
+                release023Item3: "Kontrola aktualizácií overuje nastavený HTTPS manifest; verejný zdroj je potrebné nakonfigurovať.",
+                release022Title: "Aktualizácia stability a výkonu",
+                release022Item1: "Bezpečnejší štart s nízkou grafikou, limitom 30 FPS a nižším rozlíšením vykresľovania.",
+                release022Item2: "Menej dynamických svetiel, vypnuté tiene a štart v okne.",
+                release022Item3: "Anglický inštalátor pre Windows a lokálna desktopová hra.",
+                release020Title: "Prebudenie v Priepasti",
+                release020Item1: "Prvá osoba a prvá kapitola na stanici Chronos-9 pri TON 618.",
+                release020Item2: "Kozmická úvodná scéna, nepriateľské entity a úlohy prežitia.",
+                release020Item3: "Desktopový inštalátor s lokálnymi súbormi hry.",
+                release010Title: "Prvý hrateľný prototyp",
+                release010Item1: "Skorý prieskum stanice z pohľadu prvej osoby.",
+                release010Item2: "Baterka, stealth a prvé stretnutie s Kryo-Jednotkou 04.",
+                release010Item3: "Prototypové úlohy a zakončenie výťahom."
+            },
+            en: {
+                heroDesc: "Survive in the depths of Chronos-9 station near the supermassive black hole TON 618. Create an account, download the installer, and enter the Abyss.",
+                downloadTitle: "Download Game",
+                downloadDesc: "Download the official installer. Once completed, a game shortcut will be created directly on your PC desktop.",
+                downloadBtn: "DOWNLOAD INSTALLER (.EXE)",
+                versionText: "Prototype 3 (0.3.0) | Windows x64",
+                registerTitle: "Account Registration",
+                loginTitle: "Account Login",
+                lblUserReg: "OPERATIVE NAME",
+                lblPassReg: "PASSWORD",
+                lblUserLog: "OPERATIVE NAME",
+                lblPassLog: "PASSWORD",
+                btnRegister: "CREATE ACCOUNT",
+                btnLogin: "LOG IN",
+                hasAccountText: "Already have an account?",
+                linkLogin: "Log In",
+                noAccountText: "Don't have an account?",
+                linkRegister: "Register",
+                navLoginBtn: "LOGIN / ACCOUNT",
+                navStory: "STORY",
+                navUpdates: "UPDATES",
+                navDownload: "DOWNLOAD",
+                navAccount: "ACCOUNT",
+                updatesSection: "RELEASE NOTES",
+                release030Title: "Direct start and survival upgrades",
+                release030Item1: "Start directly in the station; the opening cutscene is removed.",
+                release030Item2: "The flashlight starts at 100%, drains while lit, and switches off below 10%; every activation takes three hand taps.",
+                release030Item3: "Smoother creature shapes, procedural biomass texture, menu music, footsteps, elevator and jumpscare sounds.",
+                release029Title: "Ultra-low load mode",
+                release029Item1: "Low graphics renders at 12.5% resolution, with 4 FPS in menus and 5 FPS in gameplay.",
+                release029Item2: "Reduced corridor detail, particles, stars and dynamic lighting.",
+                release029Item3: "The cutscene stays lightweight and the instant skip remains available.",
+                release028Title: "Cutscene load fix",
+                release028Item1: "The opening cinematic no longer renders the full 3D station scene.",
+                release028Item2: "Scene rendering and animation pause during the intro; its timeline updates at a maximum of 6 times per second.",
+                release028Item3: "The game scene renders only after the intro ends or is skipped.",
+                release027Title: "Instant intro skip",
+                release027Item1: "The button responds as soon as it is pressed and switches straight to gameplay.",
+                release027Item2: "Gameplay renders immediately without waiting for the FPS timer.",
+                release027Item3: "Enter and Space still skip the intro when using a keyboard.",
+                release026Title: "Opening sequence recovery",
+                release026Item1: "Skip the opening cinematic with the on-screen button or Enter.",
+                release026Item2: "Mouse capture now starts only after the cinematic, so it cannot trap the cursor during the intro.",
+                release026Item3: "The opening story text appears immediately instead of waiting for the first animation update.",
+                release025Title: "Rendering and background-load fix",
+                release025Item1: "The FPS cap now controls the render timer, avoiding unnecessary display-refresh callbacks.",
+                release025Item2: "Rendering stops while the game window is hidden and resumes when it becomes visible.",
+                release025Item3: "Retains the reduced graphics settings and accessibility modes from 0.2.4.",
+                release024Title: "Emergency performance update",
+                release024Item1: "Smaller station scene, fewer dynamic lights and lower-resolution textures.",
+                release024Item2: "Very low render scale and strict 10 FPS menu / 12 FPS low-mode caps.",
+                release024Item3: "Smaller 800 × 450 window to reduce GPU load and keep the desktop responsive.",
+                release023Title: "Performance & accessibility update",
+                release023Item1: "Lower render scale, capped frame rate and lighter menu scene to reduce PC load.",
+                release023Item2: "Epilepsy-safe mode and arachnophobia mode in game settings.",
+                release023Item3: "Update checker validates a configured HTTPS manifest; a public feed is still required.",
+                release022Title: "Stability & performance update",
+                release022Item1: "Safer low-graphics startup, capped at 30 FPS with reduced render resolution.",
+                release022Item2: "Fewer dynamic lights, disabled shadows and windowed startup.",
+                release022Item3: "English-only Windows installer and local desktop game.",
+                release020Title: "Awakening in the Abyss",
+                release020Item1: "First-person Chapter One aboard Chronos-9 near TON 618.",
+                release020Item2: "Cosmic opening scene, hostile entities and survival objectives.",
+                release020Item3: "Desktop installer with local game files.",
+                release010Title: "First playable prototype",
+                release010Item1: "Early first-person station exploration.",
+                release010Item2: "Flashlight, stealth and initial Cryo-Unit 04 encounter.",
+                release010Item3: "Prototype objectives and elevator ending."
+            },
+            de: {
+                heroDesc: "Überleben Sie in den Tiefen der Station Chronos-9 nahe dem supermassiven Schwarzen Loch TON 618. Erstellen Sie ein Konto und betreten Sie den Abgrund.",
+                downloadTitle: "Spiel Herunterladen",
+                downloadDesc: "Laden Sie das offizielle Installationsprogramm herunter. Nach der Installation wird eine Verknüpfung auf Ihrem PC-Desktop erstellt.",
+                downloadBtn: "INSTALLATIONSPROGRAMM (.EXE)",
+                versionText: "Prototype 3 (0.3.0) | Windows x64",
+                registerTitle: "Konto Registrierung",
+                loginTitle: "Anmeldung",
+                lblUserReg: "OPERATOR NAME",
+                lblPassReg: "PASSWORT",
+                lblUserLog: "OPERATOR NAME",
+                lblPassLog: "PASSWORT",
+                btnRegister: "KONTO ERSTELLEN",
+                btnLogin: "ANMELDEN",
+                hasAccountText: "Bereits ein Konto?",
+                linkLogin: "Anmelden",
+                noAccountText: "Kein Konto?",
+                linkRegister: "Registrieren",
+                navLoginBtn: "ANMELDUNG / KONTO",
+                navStory: "STORY",
+                navUpdates: "UPDATES",
+                navDownload: "DOWNLOAD",
+                navAccount: "KONTO",
+                updatesSection: "VERSIONSHINWEISE",
+                release030Title: "Direkter Start und neue Überlebensfunktionen",
+                release030Item1: "Direkter Start auf der Station; die Eröffnungs-Cutscene wurde entfernt.",
+                release030Item2: "Die Taschenlampe startet mit 100 %, entlädt sich beim Leuchten und schaltet sich unter 10 % aus; jedes Einschalten erfordert drei Handklopfer.",
+                release030Item3: "Glattere Kreaturenformen, prozedurale Biomasse-Textur, Menümusik sowie Schritt-, Aufzugs- und Jumpscare-Sounds.",
+                release029Title: "Ultra-niedriger Ressourcenverbrauch",
+                release029Item1: "Niedrige Grafik rendert mit 12,5 % Auflösung, mit 4 FPS im Menü und 5 FPS im Spiel.",
+                release029Item2: "Weniger Korridordetails, Partikel, Sterne und dynamische Beleuchtung.",
+                release029Item3: "Die Cutscene bleibt ressourcenschonend und kann weiterhin sofort übersprungen werden.",
+                release028Title: "Korrektur der Cutscene-Last",
+                release028Item1: "Während der Eröffnung wird die aufwendige 3D-Stationsszene nicht mehr gerendert.",
+                release028Item2: "Rendering und Szenenanimation pausieren während des Intros; die Zeitleiste wird höchstens sechsmal pro Sekunde aktualisiert.",
+                release028Item3: "Die Spielszene wird erst nach Ende oder Überspringen des Intros gerendert.",
+                release027Title: "Intro sofort überspringen",
+                release027Item1: "Die Schaltfläche reagiert sofort beim Drücken und wechselt direkt zum Spiel.",
+                release027Item2: "Das Spiel wird sofort gerendert, ohne auf den FPS-Timer zu warten.",
+                release027Item3: "Enter und Leertaste überspringen das Intro weiterhin per Tastatur.",
+                release026Title: "Wiederherstellung der Eröffnungssequenz",
+                release026Item1: "Die Eröffnungsszene lässt sich über die Schaltfläche oder die Eingabetaste überspringen.",
+                release026Item2: "Die Maus wird erst nach der Szene erfasst und kann während der Eröffnung nicht hängen bleiben.",
+                release026Item3: "Der Eröffnungstext erscheint sofort und wartet nicht auf die erste Animationsaktualisierung.",
+                release025Title: "Korrektur für Rendering und Hintergrundlast",
+                release025Item1: "Das FPS-Limit steuert jetzt den Render-Timer und vermeidet unnötige Aufrufe bei jeder Bildschirmaktualisierung.",
+                release025Item2: "Das Rendering wird bei ausgeblendetem Spielfenster angehalten und beim erneuten Anzeigen fortgesetzt.",
+                release025Item3: "Die reduzierten Grafikeinstellungen und Barrierefreiheitsmodi aus Version 0.2.4 bleiben erhalten.",
+                release024Title: "Notfall-Leistungsupdate",
+                release024Item1: "Kleinere Stationsszene, weniger dynamische Lichter und Texturen mit niedrigerer Auflösung.",
+                release024Item2: "Sehr niedrige Renderauflösung und strenges Limit von 10 FPS im Menü / 12 FPS im Spiel bei niedriger Grafik.",
+                release024Item3: "Kleineres Fenster mit 800 × 450 zur Reduzierung der GPU-Last.",
+                release023Title: "Leistungs- und Barrierefreiheitsupdate",
+                release023Item1: "Niedrigere Renderauflösung, begrenzte Bildrate und ein leichteres Menü reduzieren die PC-Last.",
+                release023Item2: "Blitzfreier Modus und Arachnophobie-Modus in den Spieleinstellungen.",
+                release023Item3: "Der Update-Checker prüft ein konfiguriertes HTTPS-Manifest; ein öffentlicher Feed muss noch eingerichtet werden.",
+                release022Title: "Stabilitäts- und Leistungsupdate",
+                release022Item1: "Sicherer Start mit niedriger Grafik, 30-FPS-Limit und reduzierter Renderauflösung.",
+                release022Item2: "Weniger dynamische Lichter, deaktivierte Schatten und Start im Fenstermodus.",
+                release022Item3: "Englischer Windows-Installer und lokales Desktop-Spiel.",
+                release020Title: "Erwachen im Abgrund",
+                release020Item1: "Kapitel Eins aus der Ich-Perspektive auf Chronos-9 nahe TON 618.",
+                release020Item2: "Kosmische Eröffnung, feindliche Wesen und Überlebensziele.",
+                release020Item3: "Desktop-Installer mit lokalen Spieldateien.",
+                release010Title: "Erster spielbarer Prototyp",
+                release010Item1: "Frühe Erkundung der Station aus der Ich-Perspektive.",
+                release010Item2: "Taschenlampe, Schleichen und erste Begegnung mit Kryo-Einheit 04.",
+                release010Item3: "Prototyp-Ziele und Aufzug-Finale."
+            },
+            es: {
+                heroDesc: "Sobrevive en las profundidades de la estación Chronos-9 cerca del agujero negro supermasivo TON 618. Crea una cuenta y entra al Abismo.",
+                downloadTitle: "Descargar Juego",
+                downloadDesc: "Descarga el instalador oficial. Una vez finalizado, se creará un acceso directo en el escritorio de tu PC.",
+                downloadBtn: "DESCARGAR INSTALADOR (.EXE)",
+                versionText: "Prototipo 3 (0.3.0) | Windows x64",
+                registerTitle: "Registro de Cuenta",
+                loginTitle: "Iniciar Sesión",
+                lblUserReg: "NOMBRE DE OPERADOR",
+                lblPassReg: "CONTRASEÑA",
+                lblUserLog: "NOMBRE DE OPERADOR",
+                lblPassLog: "CONTRASEÑA",
+                btnRegister: "CREAR CUENTA",
+                btnLogin: "INICIAR SESIÓN",
+                hasAccountText: "¿Ya tienes una cuenta?",
+                linkLogin: "Iniciar sesión",
+                noAccountText: "¿No tienes cuenta?",
+                linkRegister: "Registrarse",
+                navLoginBtn: "INICIAR SESIÓN / CUENTA",
+                navStory: "HISTORIA",
+                navUpdates: "ACTUALIZACIONES",
+                navDownload: "DESCARGAR",
+                navAccount: "CUENTA",
+                updatesSection: "NOTAS DE VERSIÓN",
+                release030Title: "Inicio directo y mejoras de supervivencia",
+                release030Item1: "Comienza directamente en la estación; se elimina la cinemática inicial.",
+                release030Item2: "La linterna empieza al 100 %, se descarga al iluminar y se apaga por debajo del 10 %; cada activación requiere tres golpes de la mano.",
+                release030Item3: "Formas de criaturas más suaves, textura procedural de biomasa, música de menú y sonidos de pasos, ascensor y jumpscare.",
+                release029Title: "Modo de carga ultrabaja",
+                release029Item1: "Los gráficos bajos renderizan al 12,5 % de resolución, con 4 FPS en el menú y 5 FPS durante el juego.",
+                release029Item2: "Menos detalles del pasillo, partículas, estrellas e iluminación dinámica.",
+                release029Item3: "La cinemática mantiene una carga reducida y se puede omitir al instante.",
+                release028Title: "Corrección de carga de la cinemática",
+                release028Item1: "La cinemática inicial ya no renderiza la escena 3D completa de la estación.",
+                release028Item2: "El renderizado y la animación de la escena se pausan durante la introducción; su línea temporal se actualiza como máximo 6 veces por segundo.",
+                release028Item3: "La escena del juego se renderiza al terminar u omitir la introducción.",
+                release027Title: "Omisión instantánea de la introducción",
+                release027Item1: "El botón responde al pulsarlo y pasa directamente al juego.",
+                release027Item2: "El juego se renderiza de inmediato, sin esperar al temporizador de FPS.",
+                release027Item3: "Enter y Espacio también permiten omitir la introducción con el teclado.",
+                release026Title: "Recuperación de la secuencia inicial",
+                release026Item1: "Puedes omitir la cinemática inicial con el botón en pantalla o la tecla Intro.",
+                release026Item2: "El ratón solo se captura después de la cinemática para que no quede bloqueado durante la introducción.",
+                release026Item3: "El texto inicial aparece de inmediato, sin esperar a la primera actualización de la animación.",
+                release025Title: "Corrección del renderizado y la carga en segundo plano",
+                release025Item1: "El límite de FPS ahora controla el temporizador de renderizado y evita llamadas innecesarias por cada actualización de pantalla.",
+                release025Item2: "El renderizado se detiene cuando la ventana del juego está oculta y se reanuda al volver a mostrarla.",
+                release025Item3: "Mantiene los ajustes gráficos reducidos y los modos de accesibilidad de la versión 0.2.4.",
+                release024Title: "Actualización urgente de rendimiento",
+                release024Item1: "Escena de estación más pequeña, menos luces dinámicas y texturas de menor resolución.",
+                release024Item2: "Escala de renderizado muy baja y límite estricto de 10 FPS en el menú / 12 FPS en el juego con gráficos bajos.",
+                release024Item3: "Ventana más pequeña de 800 × 450 para reducir el uso de la GPU.",
+                release023Title: "Actualización de rendimiento y accesibilidad",
+                release023Item1: "Menor resolución de renderizado, límite de fotogramas y menú más ligero para reducir la carga del PC.",
+                release023Item2: "Modo seguro contra destellos y modo contra la aracnofobia en los ajustes.",
+                release023Item3: "El comprobador valida un manifiesto HTTPS configurado; todavía hace falta publicar la fuente.",
+                release022Title: "Actualización de estabilidad y rendimiento",
+                release022Item1: "Inicio más seguro con gráficos bajos, límite de 30 FPS y menor resolución de renderizado.",
+                release022Item2: "Menos luces dinámicas, sombras desactivadas e inicio en ventana.",
+                release022Item3: "Instalador de Windows en inglés y juego de escritorio local.",
+                release020Title: "Despertar en el Abismo",
+                release020Item1: "Primer capítulo en primera persona a bordo de Chronos-9 junto a TON 618.",
+                release020Item2: "Escena inicial cósmica, entidades hostiles y objetivos de supervivencia.",
+                release020Item3: "Instalador de escritorio con archivos locales del juego.",
+                release010Title: "Primer prototipo jugable",
+                release010Item1: "Exploración inicial de la estación en primera persona.",
+                release010Item2: "Linterna, sigilo y primer encuentro con la Unidad Criogénica 04.",
+                release010Item3: "Objetivos de prototipo y final en el ascensor."
+            }
+        };
+
+        function changeLanguage() {
+            const lang = document.getElementById('langSelect').value;
+            const t = translations[lang];
+            document.documentElement.lang = lang;
+
+            for (let key in t) {
+                const el = document.getElementById(key);
+                if (el) {
+                    el.innerText = t[key];
+                }
+            }
+        }
+
+        changeLanguage();
+
+        function showLoginForm() {
+            document.getElementById('registerFormBox').style.display = 'none';
+            document.getElementById('loginFormBox').style.display = 'block';
+        }
+
+        function showRegisterForm() {
+            document.getElementById('loginFormBox').style.display = 'none';
+            document.getElementById('registerFormBox').style.display = 'block';
+        }
+
+        function scrollToAccount() {
+            showLoginForm();
+            document.getElementById('accountCard').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function handleAuth(e, type) {
+            e.preventDefault();
+            if (type === 'register') {
+                const user = document.getElementById('regUser').value;
+                alert(`EVOLVE ACCOUNT: Účet pre "${user}" bol úspešne vytvorený!`);
+            } else {
+                const user = document.getElementById('logUser').value;
+                if(user === 'LosFlyGameros' || user === 'NickGamer') {
+                    quickDevLogin(user);
+                } else {
+                    alert(`Prihlásenie úspešné! Vitajte späť, operátor ${user}.`);
+                }
+            }
+        }
+
+        function quickDevLogin(username) {
+            const adminPanel = document.getElementById('adminPanel');
+            const adminTitle = document.getElementById('adminRoleTitle');
+            const welcomeMsg = document.getElementById('adminWelcomeMsg');
+            const adminOnlyCard = document.getElementById('adminOnlyCard');
+
+            adminPanel.style.display = 'block';
+
+            if (username === 'LosFlyGameros') {
+                adminTitle.innerText = "👑 ADMIN CONTROL PANEL (Lead Dev)";
+                welcomeMsg.innerText = "Prihlásený správca: LosFlyGameros. Máte plné práva nad celou stránkou.";
+                adminOnlyCard.style.display = 'block';
+            } else if (username === 'NickGamer') {
+                adminTitle.innerText = "🧪 TESTER CONTROL PANEL (Moderator)";
+                welcomeMsg.innerText = "Prihlásený tester: NickGamer. Máte prístup k správe verzie a stavu servera.";
+                adminOnlyCard.style.display = 'none';
+            }
+
+            adminPanel.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function logoutDev() {
+            document.getElementById('adminPanel').style.display = 'none';
+            alert("Dev účet bol odhlásený.");
+        }
+
+        function updateGameVersion() {
+            const newVer = prompt("Zadajte novú verziu hry:", "1.0.1");
+            if (newVer) {
+                document.getElementById('currentVerDisplay').innerText = newVer;
+                document.getElementById('versionText').innerText = `Verzia: ${newVer} | Windows x64`;
+                alert(`Verzia bola aktualizovaná na ${newVer}!`);
+            }
+        }
+
+        function toggleDownloads() {
+            downloadsActive = !downloadsActive;
+            const btn = document.getElementById('toggleDownloadsBtn');
+            const dlBtn = document.getElementById('downloadBtn');
+
+            if (downloadsActive) {
+                btn.innerText = "Vypnúť Stahovanie";
+                dlBtn.disabled = false;
+                dlBtn.style.opacity = "1";
+                alert("Stahovanie bolo zapnuté.");
+            } else {
+                btn.innerText = "Zapnúť Stahovanie";
+                dlBtn.disabled = true;
+                dlBtn.style.opacity = "0.4";
+                alert("Stahovanie bolo pozastavené.");
+            }
+        }
+
+        function toggleServerStatus() {
+            serverOnline = !serverOnline;
+            const display = document.getElementById('serverStatusDisplay');
+            if (serverOnline) {
+                display.innerText = "ONLINE";
+                display.style.color = "#00ff88";
+            } else {
+                display.innerText = "ÚDRŽBA (OFFLINE)";
+                display.style.color = "#ff4444";
+            }
+        }
+
+        function clearUserAccounts() {
+            if (confirm("Naozaj chcete vynulovať všetkých používateľov?")) {
+                alert("Databáza používateľov bola prečistená.");
+            }
+        }
+
+        function triggerSystemAlert() {
+            const msg = prompt("Zadajte správu pre všetkých hráčov:");
+            if (msg) {
+                alert(`[GLOBÁLNA SPRÁVA SENT]: ${msg}`);
+            }
+        }
+
+        function downloadInstaller() {
+            if (!downloadsActive) {
+                alert("Stahovanie je momentálne pozastavené kvôli údržbe.");
+                return;
+            }
+            window.location.href = "installer/EvolveAbyss-Prototype-3-Setup.exe";
+        }
+    </script>
+</body>
+</html>
